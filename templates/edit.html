@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% block body %}
+    <!-- Head -->
+    <section class="docs-head bg-primary py-3">
+        <div class="container grid">
+            <div>
+                <h1 class="xl">Customer</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs main -->
+   
+    <section> 
+        <div class="card">             
+            <section class="table_header">
+            </section>
+            <div class="card flex">
+                <form action="{{ url_for('edit_customer', customer_id=customer.Id) }}" method="post" class="edit">
+                    {{ edit_form.csrf_token }}
+                    <i class="fa-solid fa-user fa-3x"></i>
+                    <h1>Bank Id: {{ customer.Id }}</h1>
+                    <div class="edit">
+                        <div class="space">{{ edit_form.name }}</div>
+                        <div class="space">{{ edit_form.surname }}</div>
+                        <div class="space">{{ edit_form.city }}</div>
+                        <div class="space">{{ edit_form.street }}</div>
+                        <div class="space">{{ edit_form.phone }}</div>
+                        <div class="space">{{ edit_form.email }}</div>
+                    </div>
+                    <input type="submit" class="btn" value="Save">
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}  

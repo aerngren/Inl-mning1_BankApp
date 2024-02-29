@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+
+{% block body %}
+    <!-- Head -->
+    <section class="docs-head bg-primary py-3">
+        <div class="container grid">
+            <div>
+                <h1 class="xl">Customer</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs main -->
+   
+    <section> 
+        <div class="card customer">             
+            <section class="table_header">
+            </section>
+            <div class="card flex">
+                <i class="fa-solid fa-user fa-3x"></i>
+                <h1>Bank Id: {{customer.Id}}</h1>
+                <h1>{{customer.Surname}} {{customer.GivenName}}</h1>
+                <p>National Id: {{customer.NationalId}}</p>
+                <p>City: {{customer.City}}</p>
+                <p>Street: {{customer.Streetaddress}}</p>
+                <p>Phone: {{customer.Telephone}}</p>
+                <p>Email: {{customer.EmailAddress}}</p>
+                <div id="editFields">
+                    <label for="delete">Delete</label>
+                    <input type="checkbox" value="delete" id="delete" onchange="buttonColor()">
+                    <input type="button" class="btn" id="button" value="Edit" onclick="buttonClick('{{ customer.Id }}')">
+                </div>
+            </div>
+            <section class="table_body">
+                <table>
+                    <h1>Avable balance: <strong>{{total_balance}}</strong>$</h1>
+                    <thead>
+                        <tr>
+                            <th><strong>Account Number</strong></th>
+                            <th><strong>Account</strong></th>
+                            <th><strong>Balance</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody class="customer_table" >
+                        {% for account in accounts %}
+                        <tr onclick="showTransactions('{{ customer.Id }}', '{{ account.Id }}')">
+                            <td>{{ account.Id }}</td>
+                            <td>{{ account.AccountType }}</td>
+                            <td>{{ account.Balance }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+            <section class="table_body">
+                <table>
+                   
+                </table>
+            </section>
+        </div>
+    </section>
+
+    <script src="/static/js/customer_details.js">    
+    </script>
+{% endblock %}  
+  

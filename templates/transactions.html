@@ -1,0 +1,76 @@
+{% extends "index.html" %}
+
+{% block body %}
+    <!-- Head -->
+    <section class="docs-head bg-primary py-3">
+        <div class="container grid">
+            <div>
+                <h1 class="xl">Customer</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs main -->
+   
+    <div class="card customer">             
+        <section class="table_header">
+        </section>
+        <div class="card flex">
+            <i class="fa-solid fa-user fa-3x"></i>
+            <h1>Bank Id: {{ customer.Id }}</h1>
+            <h1>{{ customer.Surname }} {{ customer.GivenName }}</h1>
+            <p>National Id: {{ customer.NationalId }}</p>
+            <p>City: {{ customer.City }}</p>
+            <p>Street: {{ customer.Streetaddress }}</p>
+            <p>Phone: {{ customer.Telephone }}</p>
+            <p>Email: {{ customer.EmailAddress }}</p>
+        </div>
+
+
+        <div class="card flex center_btn">
+            <form action="{{ url_for('account_action') }}" method="post">
+                <div><select class="space" name="transaction_type" id="transaction_type">
+                    {% for type in transaction_type %}
+                        <option value="{{ type }}">{{ type }}</option>
+                    {% endfor %}
+                </select></div>
+                <div class="space"><input type="text" id="to_customer" name="to_customer" placeholder="Transfer to CustomerID"></div>
+                <p id="name"></p>
+                <div id="accounts"></div>
+                <div class="space" id="to_account_list"></div>
+                <input type="hidden" id="to_account" name="to_account">                
+                <div class="space"><input name="amount" type="text" id="amount" placeholder="Transfer Amount"></div>
+                <input type="hidden" id="from_account" name="from_account_id" value="{{ account.Id }}">
+                <input type="hidden" value="Transfer" id="button" class="btn space">
+            </form>
+        </div>
+
+            <section class="table_body">
+                <div class="trans">
+                    <div><h1>Transactions</h1></div>
+                    <div><h1>Total: <strong>${{ total_balance }}</strong></h1></div> 
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td>{{ transaction.Date }}</td>
+                                <td>{{ transaction.Amount }}</td>
+                                <td>{{ transaction.Operation }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        <div id="total_balance" data-total-balance="{{ total_balance }}"></div>
+<script src="/static/js/transactions.js">
+</script>
+{% endblock %}  

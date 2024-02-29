@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/utilities.css') }}">
+<title>{% block title %}{% endblock %} Adams Bank</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="container flex">
+             <h1 class="logo"><a href="/">Adams Bank</a></h1>
+            <nav>
+                <ul>
+                    <li class="{{ 'active' if activePage == 'startPage' }}"><a href="/">Home</a></li>
+                    <li class="{{ 'active' if activePage == 'customerPage' }}"><a href="{{ url_for('customers') }}">Customers</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% block body %}    
+    <!-- Showcase -->
+    <section class="showcase">
+        <div class="container grid">
+            <div class="showcase-text">
+                <h1>Add a Costumer</h1>
+                <p>Create a new customer to our wonderfull bank!</p>
+                <a href="new_customer" class="btn btn-outline">Create a customer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <h3 class="stats-heading text-center my-1">
+                
+            </h3>
+
+            <div class="grid grid-3 text-center my-4">
+                <div>
+                    <i class="fas fa-address-card fa-3x"></i>
+                    <h3>{{ custumers }}</h3>
+                    <p class="text-secondary">Customers</p>
+                </div>
+                <div>
+                    <i class="fas fa-credit-card fa-3x"></i>
+                    <h3>{{ accounts }}</h3>
+                    <p class="text-secondary">Accounts</p>
+                </div>
+                <div>
+                    <i class="fas fa-solid fa-dollar-sign fa-3x"></i>
+                    <h3>{{ total }}</h3>
+                    <p class="text-secondary">Money Trusted</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+    <!-- Footer -->
+    <footer class="footer bg-dark py-5">
+        <div class="container grid grid-3">
+            <div>
+                <h1>Adams Bank
+                </h1>
+                <p>Copyright &copy; 2024</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="features">Features</a></li>
+                    <li><a href="docs">Docs</a></li>
+                </ul>
+            </nav>
+            <div class="social">
+                <a href="#"><i class="fab fa-github fa-2x"></i></a>
+                <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

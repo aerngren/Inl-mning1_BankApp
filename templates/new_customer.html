@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block body %}
+    <!-- Head -->
+    <section class="docs-head bg-primary py-3">
+        <div class="container grid">
+            <div>
+                <h1 class="xl">Customer</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs main -->
+   
+    <section> 
+        <div class="card">             
+            <section class="table_header">
+            </section>
+            <div class="card flex">
+                <form action="{{ url_for('new_customer') }}" method="post" class="edit">
+                    {{ new_customer_form.csrf_token }}
+                    <i class="fa-solid fa-user fa-3x"></i>
+                    <h1>New Customer</h1>
+                    <div class="new_customer">
+                        <div class="space">{{ new_customer_form.name.label }}: {{ new_customer_form.name }}</div>
+                        <div class="space">{{ new_customer_form.surname.label }}:{{ new_customer_form.surname }}</div>
+                        <div class="space">{{ new_customer_form.city.label }}:{{ new_customer_form.city }}</div>
+                        <div class="space">{{ new_customer_form.street.label }}:{{ new_customer_form.street }}</div>
+                        <div class="space">{{ new_customer_form.zip.label }}:{{ new_customer_form.zip }}</div>
+                        <div class="space">{{ new_customer_form.country.label }}:{{ new_customer_form.country }}</div>
+                        <div class="space">{{ new_customer_form.country_code.label }}:{{ new_customer_form.country_code }}</div>
+                        <div class="space">{{ new_customer_form.national_id.label }}:{{ new_customer_form.national_id }}</div>
+                        <div class="space">{{ new_customer_form.phone.label }}:{{ new_customer_form.phone }}</div>
+                        <div class="space">{{ new_customer_form.email.label }}:{{ new_customer_form.email }}</div>
+                        <div class="flex">
+                            <label for="account">Account: </label>
+                            <div class="space">
+                                <input type="checkbox" name="account" id="personal" value="Personal">
+                                <label for="personal"> Personal</label>
+                            </div>
+                            <div class="space">
+                                <input type="checkbox" name="account" id="checking" value="Checking">
+                                <label for="checking">Checking</label>
+                            </div>
+                            <div class="space">
+                                <input type="checkbox" name="account" id="savings" value="Savings">
+                                <label for="savings">Savings</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn" value="Create">
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}  

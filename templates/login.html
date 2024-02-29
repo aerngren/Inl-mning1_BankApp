@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/utilities.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar">
+    <div class="container flex">
+
+    </div>
+</div>
+<section class="showcase">
+    <div class="container grid">
+        <div class="showcase-form card">
+            <h2>Loggin</h2>
+             <form action="/login?next=/" method="post">
+                <div class="form-control">
+                    <input type="email" placeholder="Email" name="email">
+                </div>
+                <div class="form-control">
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <input type="submit" value="Loggin" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

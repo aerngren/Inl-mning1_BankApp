@@ -1,0 +1,99 @@
+{% extends "index.html" %}
+
+{% block body %}
+    <!-- Head -->
+    <section class="docs-head bg-primary py-3">
+        <div class="container grid">
+            <div>
+                <h1 class="xl">Customers</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs main -->
+    <section>
+        <div class="card">
+            <section class="table_header">
+                <form method="get">
+                    <input type="text" placeholder="Search" value="{{ q }}" name="q">
+                    <select name="filter">
+                        <option value="Id" {% if filter == 'Id' %} selected {% endif %}>Bank Id</option>
+                        <option value="NationalId" {% if filter == 'NationalId' %} selected {% endif %}>National Id</option>
+                        <option value="Surname" {% if filter == 'Surname' %} selected {% endif %}>Surname</option>
+                        <option value="City" {% if filter == 'City' %} selected {% endif %}>City</option>
+                        <option value="Streetaddress" {% if filter == 'Streetaddress' %} selected {% endif %}>Address</option>
+                    </select>
+                    <input class="btn" type="submit" value="Search">
+                </form>
+            </section>
+            <section class="table_body">
+                <p>Page {{ page }} of {{ pages }}</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id
+                                <a href="/customers?sortColumn=Id&sortOrder=asc&q={{ q }}&filter={{ filter }}"><i class="fa-solid fa-arrow-down"></i></a>
+                                <a href="/customers?sortColumn=Id&sortOrder=desc&q={{ q }}&filter={{ filter }}"><i class="fa-solid fa-arrow-up"></i></a>
+                            </th>
+
+                            <th>Surname<a href="/customers?sortColumn=Surname&sortOrder=asc&q={{ q }}&filter={{ filter }}"> <i class="fa-solid fa-arrow-down"></i></a>
+                                <a href="/customers?sortColumn=Surname&sortOrder=desc&q={{ q }}&filter={{ filter }}"> <i class="fa-solid fa-arrow-up"></i></a>
+                            </th>
+                            <th>First Name</th>
+                            <th>National Id<a href="/customers?sortColumn=NationalId&sortOrder=asc&q={{ q }}&filter={{ filter }}"> <i class="fa-solid fa-arrow-down"></i></a>
+                                <a href="/customers?sortColumn=NationalId&sortOrder=desc&q={{ q }}&filter={{ filter }}"> <i class="fa-solid fa-arrow-up"></i></a>
+                            </th>
+                            <th>City</th>
+                            <th>Adress<a href="/customers?sortColumn=Streetaddress&sortOrder=asc&q={{ q }}&filter={{ filter }}"> <i class="fa-solid fa-arrow-down"></i></a>
+                                <a href="/customers?sortColumn=Streetaddress&sortOrder=desc&q={{ q }}&filter={{ filter }}"> <i class="fa-solid fa-arrow-up"></i></a>
+                            </th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody class="customer_table">
+                        {% for person in persons %}
+                        <tr onclick="showCustomer('{{ person.Id }}')">
+                            <td>{{ person.Id }}</td>
+                            <td>{{ person.Surname }}</td>
+                            <td>{{ person.GivenName }}</td>
+                            <td>{{ person.NationalId }}</td>
+                            <td>{{ person.City }}</td>
+                            <td>{{ person.Streetaddress }}</td>                                
+                            <td>{{ person.Country }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                {% if has_prev %}
+                                <a class="btn" href="/customers?page={{ page - 1 }}&sortColumn={{ sortColumn }}&sortOrder={{ sortOrder }}&q={{ q }}">
+                                    <i class="fa-solid fa-arrow-left"></i> Prev
+                                </a>
+                                {% endif %}
+                            </td>
+                            <td></td>
+                            <td>Page {{ page }} of {{ pages }}</td>
+                            <td></td>
+                            <td>
+                                {% if has_next %}
+                                <a class="btn" href="/customers?page={{ page + 1 }}&sortColumn={{ sortColumn }}&sortOrder={{ sortOrder }}&q={{ q }}">
+                                    Next <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+        </div>
+    </section>
+
+    <script>
+        function showCustomer( customerId) {
+            window.location = "/customer/" + customerId;
+        }
+    </script>
+{% endblock %}  
+  
