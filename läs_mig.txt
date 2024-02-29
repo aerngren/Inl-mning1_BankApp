@@ -1,0 +1,5 @@
+logga in med: 
+admin@systementor.se    PW: password
+worker1@systementor.se  PW: password
+
+Testerna körs på account 1 så har den blivit jäkligt rik så kommer dom faila
